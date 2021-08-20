@@ -1,4 +1,4 @@
-module chat_site
+module github.com/dopamine-joker/chat_site
 
 go 1.16
 

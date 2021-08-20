@@ -9,5 +9,5 @@ import (
 
 func main() {
 	addr := strconv.Itoa(8080)
-	logrus.Fatal(http.ListenAndServe(addr, http.FileServer(http.Dir("./site/"))))
+	logrus.Fatal(http.ListenAndServe(addr, http.FileServer(http.Dir("./chat_site/"))))
 }
