@@ -2,12 +2,11 @@ package main
 
 import (
 	"net/http"
-	"strconv"
-
-	"github.com/sirupsen/logrus"
 )
 
 func main() {
-	addr := strconv.Itoa(8080)
-	logrus.Fatal(http.ListenAndServe(addr, http.FileServer(http.Dir("./chat_site/"))))
+	http.Handle("/", http.FileServer(http.Dir("./site/")))
+	if err := http.ListenAndServe(":8080", nil); err != nil {
+		panic(err)
+	}
 }

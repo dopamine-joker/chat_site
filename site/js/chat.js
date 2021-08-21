@@ -55,7 +55,7 @@ $(document).ready(function () {
             $('#member_info').html("");
             let innerInfoArr = [];
             for (let k in data.roomUserInfo) {
-                let item = '<div class="item" data-id="' + k + '"><div class="avatar"><img src="/static/chat_head.jpg"> </div> <div class="nick">' + data.roomUserInfo[k] + '</div> </div>';
+                let item = '<div class="item" data-id="' + k + '"><div class="avatar"><img src="./static/chat_head.jpg"> </div> <div class="nick">' + data.roomUserInfo[k] + '</div> </div>';
                 innerInfoArr.push(item)
             }
             $('#member_info').html(innerInfoArr.join(""));
