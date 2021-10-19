@@ -36,29 +36,33 @@ $(document).ready(function () {
     };
 
     websocket.onmessage = function (evt) {
+        console.log("evt", evt);
         let data = JSON.parse(evt.data);
-        if (data.op == 3) {
-            let userNameAndMsg = data.fromUserName + '(' + data.createTime + ')';
+        console.log("data", data)
+        if (data.Op == 3) {
+            let userNameAndMsg = data.FromUserName + '(' + data.CreateTime + ')';
             let innerInfo = '<div class="item" >' +
                 '<p class="nick guest j-nick " data-role="guest"></p>' +
                 '<p class="text"></p>' +
                 '</div>';
             $("#msg").append(innerInfo);
             $("#msg > div[class='item']:last > p[class='nick guest j-nick ']").text(userNameAndMsg);
-            $("#msg > div[class='item']:last > p[class='text']:last").text(data.msg);
+            $("#msg > div[class='item']:last > p[class='text']:last").text(data.Msg);
             $("#msg").animate({scrollTop: $("#msg").offset().top + 100000}, 1000);
-        } else if (data.op == 4) {
+        } else if (data.Op == 4) {
             // get room user count
-            $("#roomOnlineMemberNum").text(data.count);
-        } else if (data.op == 5) {
+            $("#roomOnlineMemberNum").text(data.Count);
+        } else if (data.Op == 5) {
             // get room user list
+            console.log("get data.Op5")
             $('#member_info').html("");
             let innerInfoArr = [];
-            for (let k in data.roomUserInfo) {
-                let item = '<div class="item" data-id="' + k + '"><div class="avatar"><img src="./static/chat_head.jpg"> </div> <div class="nick">' + data.roomUserInfo[k] + '</div> </div>';
+            for (let k in data.RoomUserInfo) {
+                let item = '<div class="item" data-id="' + k + '"><div class="avatar"><img src="./static/chat_head.jpg"> </div> <div class="nick">' + data.RoomUserInfo[k] + '</div> </div>';
                 innerInfoArr.push(item)
             }
             $('#member_info').html(innerInfoArr.join(""));
+            $("#roomOnlineMemberNum").text(data.Count);
         }
     };
 });
